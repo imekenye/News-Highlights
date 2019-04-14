@@ -1,0 +1,3 @@
+{%macro displaySourceList(sources_list)%} {%for Sources in sources_list%}
+<li>{{ Sources.id }} - {{ Sources.category }}</li>
+{%endfor%} {%endmacro%}
