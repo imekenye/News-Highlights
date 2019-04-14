@@ -1,27 +1,17 @@
-{%import 'macros.html' as macro%}
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    {% if title %}
-    <title>{{ title }}</title>
-    {% else %}
-    <title>Welcome to Your #1 News Source</title>
-    {% endif %}
-  </head>
-  <body>
-    <!-- News Sources section  -->
-    <h3>General News</h3>
-    <!-- <ul>
+{%import 'macros.html' as macro%} {% extends 'base.html'%} {%block content%}
+<body>
+  <!-- News Sources section  -->
+  <h3>News Sources</h3>
+  <!-- <ul>
       {% for news_category in category %}
       <li>{{ news_category.id }} - {{ news_category.category }}</li>
 
       {% endfor %}
     </ul> -->
-    <ul>
-      {{
-        macro.displaySourceList(category)
-      }}
-    </ul>
-  </body>
-</html>
+  <ul>
+    {{
+      macro.displaySourceList(category)
+    }}
+  </ul>
+  {%endblock%}
+</body>
