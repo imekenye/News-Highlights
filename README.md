@@ -1,4 +1,4 @@
-# NEWS HIGHLIGHTS
+# News Highlights
 
 This is a Python app that allows users to view news from various news sources.
 
