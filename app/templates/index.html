@@ -2,16 +2,11 @@
 <body>
   <!-- News Sources section  -->
   <h3>News Sources</h3>
-  <!-- <ul>
+     <ul>
       {% for news_category in category %}
-      <li>{{ news_category.id }} - {{ news_category.category }}</li>
+      <li><a href="/article/{{ news_category.id }}" target="_blank">{{news_category.name}}</a>  - {{ news_category.category }}</li>
 
       {% endfor %}
-    </ul> -->
-  <ul>
-    {{
-      macro.displaySourceList(category)
-    }}
-  </ul>
+    </ul>
   {%endblock%}
 </body>

@@ -1,18 +1,20 @@
-from app import app
 import urllib.request,json
 from .models import Sources,Articles
 
-Sources = Sources.Sources
-
 # Getting api key
-api_key = app.config['NEWS_API_KEY']
+api_key = None
+# Getting the news and article base url
+base_url = None
+base2_url = None
 
-# Getting the news base url
-base_url = app.config["NEWS_API_BASE_URL"]
-base2_url = app.config["ARTICLE_API_BASE_URL"]
+def configure_request(app):
+    global api_key,base_url,base2_url
+    api_key = app.config["NEWS_API_KEY"]
+    base_url = app.config["NEWS_API_BASE_URL"]
+    base2_url = app.config["ARTICLE_API_BASE_URL"]
 
 
-def get_sources(sources):
+def get_sources(source):
     '''
     Function that gets the json response to our url request
     '''
@@ -70,8 +72,9 @@ def get_article(article_id):
 
     return articles_results
 
+
 def process_articles(articles_list):
-    
+
     '''
     This is a function that processes the articles result and transform them to a list of articles
     Args:
@@ -94,4 +97,4 @@ def process_articles(articles_list):
             article_object= Articles(id, name, title, url, image, content, publishedAt)
             articles_results.append(article_object)
 
-    return articles_results    
+    return articles_results
