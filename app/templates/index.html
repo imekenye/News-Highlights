@@ -1,12 +1,47 @@
-{%import 'macros.html' as macro%} {% extends 'base.html'%} {%block content%}
-<body>
-  <!-- News Sources section  -->
-  <h3>News Sources</h3>
-     <ul>
-      {% for news_category in category %}
-      <li><a href="/article/{{ news_category.id }}" target="_blank">{{news_category.name}}</a>  - {{ news_category.category }}</li>
+{%import 'macros.html' as macro%} {% extends 'base.html'%}
 
-      {% endfor %}
-    </ul>
+<!-- Styles block -->
+
+{% block styles%}
+{{ super() }}
+<link
+  href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+  rel="stylesheet"
+/>
+<link
+  rel="stylesheet"
+  href="{{url_for('static',filename='css/argon.min.css')}}"
+/>
+<link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}" />
+
+{% endblock %} {%block content%}
+<body class="">
+  <div class="container w-100 p-0 ">
+    <div class="row m-0 p-0 w-100 ">
+      <!-- News Sources section  -->
+      <h1 class="col-sm-12 text-center display-1 my-5 text-default">
+        - News Sources -
+      </h1>
+      <div>
+        {% for news_category in category %}
+        <div
+          class=" card bg-default card-lift--hover shadow border-primary border-top-0 border-bottom-0 p-0  col-sm-12 col-lg-4 col-md-6  mb-2"
+          style="width: 100%;"
+        >
+          <a
+            href="/article/{{ news_category.id }}"
+            target="_blank"
+            class="text-white lead card-body text-center"
+            >{{ news_category.name }}</a
+          >
+          <span class="badge-primary text-white text-center w-100 ">{{
+            news_category.category
+          }}</span>
+        </div>
+
+        {% endfor %}
+      </div>
+    </div>
+  </div>
   {%endblock%}
 </body>

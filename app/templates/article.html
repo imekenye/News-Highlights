@@ -1,26 +1,53 @@
 {%extends 'base.html'%}
+
+<!-- Styles block -->
+
+{% block styles%}
+{{ super() }}
+<link
+  href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700"
+  rel="stylesheet"
+/>
+<link
+  rel="stylesheet"
+  href="{{url_for('static',filename='css/argon.min.css')}}"
+/>
+
+{% endblock %}
 <!-- Content block -->
 {%block content%}
-div class="container move">
-    <div class="row">
-        <div class="col-md-12">
-            <h2 class="artitle"> News Articles </h2>
-        </div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="artitle display-1 my-5 text-center">- News Articles -</h2>
+    </div>
 
     {% for indexarticle in myarticle %}
-        <div class="col-sm-6">
-            
-            <div class="card card movecard">
-                <img class="card-img-top imagesize img-rounded" src="{{indexarticle.urlToImage}}" alt="article image">
-                    <div class="card-body">
-                        <h4 class="card-title">{{indexarticle.title}}</h4>
-                        <p>Published at {{indexarticle.publishedAt}}</p>
-                        <p class="card-text">{{indexarticle.content | truncate(100) }}</p>
-                        <a href="{{indexarticle.url}}"><button class="btn">Read full story</button></a> 
-                    </div>
-            </div>
+    <div class="col-sm-12 col-lg-4 col-md-6">
+      <div class="card shadow mb-5">
+        <img
+          class="card-img-top imagesize img-rounded"
+          src="{{ indexarticle.urlToImage }}"
+          alt="article image"
+        />
+        <div class="card-body">
+          <h4 class="card-title">{{ indexarticle.title }}</h4>
+          <span
+            class=" badge badge-primary badge-pill text-uppercase "
+            style="font-size: 10px;"
+          >
+            Published at {{ indexarticle.publishedAt }}
+          </span>
+          <p class="card-text" style="font-size: 14px;">
+            {{indexarticle.content | truncate(100) }}
+          </p>
+          <a href="{{ indexarticle.url }}"
+            ><button class="btn btn-default">Read full story</button></a
+          >
         </div>
-    {% endfor %}
+      </div>
     </div>
+    {% endfor %}
+  </div>
 </div>
 {%endblock%}
