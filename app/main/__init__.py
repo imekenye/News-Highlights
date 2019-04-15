@@ -1,12 +1,8 @@
-
-from flask import Flask
-from flask_bootstrap import Bootstrap
-from config import config_options
-
-bootstrap = Bootstrap()
+from flask import Blueprint
+main = Blueprint('main',__name__)
+from . import views,error
 
 def create_app(config_name):
-
     app = Flask(__name__)
 
     # Creating the app configurations
@@ -15,6 +11,8 @@ def create_app(config_name):
     # Initializing flask extensions
     bootstrap.init_app(app)
 
-    # Will add the views
+    # Registering the blueprint
+    from .main import main as main_blueprint
+    app.register_blueprint(main_blueprint)
 
     return app
